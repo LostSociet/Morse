@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>DotsAndDashes</title>
+  <!-- Add any necessary CSS styles here -->
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: black; /* Set background color to black */
+      color: green; /* Set text color to green */
+    }
+    /* Add your custom CSS styles here */
+    #pressedKey {
+      position: absolute;
+      top: 20px;
+      left: 20px; /* Move the text a bit to the right */
+      font-size: 24px; /* Slightly bigger font size */
+      transition: all 0.2s ease-out;
+    }
+  </style>
+</head>
+<body>
+  <!-- Add a text element to display the pressed key -->
+  <div>
+    <p id="pressedKey">DotsAndDashes: </p>
+  </div>
+
+  <!-- Add JavaScript for sound effects and updating the displayed key -->
+  <script>
+    let morseCodeInput = "";
+
+    document.addEventListener("keydown", function(event) {
+      if (event.key === ".") {
+        playDotSound();
+        updatePressedKey(event.key);
+        morseCodeInput += ".";
+      } else if (event.key === "-") {
+        playDashSound();
+        updatePressedKey(event.key);
+        morseCodeInput += "-";
+      } else if (event.key === "Backspace") {
+        deleteLastCharacter();
+        playDeleteSound();
+      }
+
+      checkForSOS();
+    });
+
+    function playDotSound() {
+      const dotSound = new Audio('Dot.mp3');
+      dotSound.play();
+    }
+
+    function playDashSound() {
+      const dashSound = new Audio('Dash.mp3');
+      dashSound.play();
+    }
+
+    function updatePressedKey(key) {
+      const pressedKeyElement = document.getElementById("pressedKey");
+      pressedKeyElement.textContent += key;
+      pressedKeyElement.style.left = parseInt(pressedKeyElement.style.left) + 10 + "px";
+    }
+
+    function deleteLastCharacter() {
+      const pressedKeyElement = document.getElementById("pressedKey");
+      const currentText = pressedKeyElement.textContent;
+      const lastCharacter = currentText.slice(-1);
+
+      if (lastCharacter !== ":") {
+        pressedKeyElement.textContent = currentText.slice(0, -1);
+        pressedKeyElement.style.left = parseInt(pressedKeyElement.style.left) - 10 + "px";
+        // Remove the last character from the Morse code input
+        morseCodeInput = morseCodeInput.slice(0, -1);
+      }
+    }
+
+    function playDeleteSound() {
+      const deleteSound = new Audio('Delete.mp3'); 
+      deleteSound.play();
+    }
+
+    function checkForSOS() {
+      if (morseCodeInput === "...---...") {
+        // Redirect to another website
+        window.location.href = "https://i.ibb.co/Sn6FSYC/Smiley.png"; 
+      }
+    }
+  </script>
+</body>
+</html>
