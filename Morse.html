@@ -5,18 +5,26 @@
   <title>DotsAndDashes</title>
   <!-- Add any necessary CSS styles here -->
   <style>
+    @font-face {
+      font-family: 'Future';
+      src: url('Future.ttf') format('truetype');
+    }
+
     body {
       font-family: Arial, sans-serif;
       background-color: black; /* Set background color to black */
       color: green; /* Set text color to green */
     }
+
     /* Add your custom CSS styles here */
     #pressedKey {
       position: absolute;
       top: 20px;
       left: 20px; /* Move the text a bit to the right */
+      font-family: 'Future', Arial, sans-serif; /* Apply the 'Future' font */
       font-size: 24px; /* Slightly bigger font size */
       transition: all 0.2s ease-out;
+      text-shadow: 0 0 10px #00ff00;
     }
   </style>
 </head>
