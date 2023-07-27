@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <title>DotsAndDashes</title>
-  <!-- Add any necessary CSS styles here -->
   <style>
     @font-face {
       font-family: 'Future';
@@ -12,29 +11,26 @@
 
     body {
       font-family: Arial, sans-serif;
-      background-color: black; /* Set background color to black */
-      color: green; /* Set text color to green */
+      background-color: black;
+      color: green;
     }
 
-    /* Add your custom CSS styles here */
     #pressedKey {
       position: absolute;
       top: 20px;
-      left: 20px; /* Move the text a bit to the right */
-      font-family: 'Future', Arial, sans-serif; /* Apply the 'Future' font */
-      font-size: 24px; /* Slightly bigger font size */
+      left: 20px;
+      font-family: 'Future', Arial, sans-serif;
+      font-size: 24px;
       transition: all 0.2s ease-out;
       text-shadow: 0 0 10px #00ff00;
     }
   </style>
 </head>
 <body>
-  <!-- Add a text element to display the pressed key -->
   <div>
     <p id="pressedKey">DotsAndDashes: </p>
   </div>
 
-  <!-- Add JavaScript for sound effects and updating the displayed key -->
   <script>
     let morseCodeInput = "";
 
@@ -79,7 +75,6 @@
       if (lastCharacter !== ":") {
         pressedKeyElement.textContent = currentText.slice(0, -1);
         pressedKeyElement.style.left = parseInt(pressedKeyElement.style.left) - 10 + "px";
-        // Remove the last character from the Morse code input
         morseCodeInput = morseCodeInput.slice(0, -1);
       }
     }
@@ -91,7 +86,6 @@
 
     function checkForSOS() {
       if (morseCodeInput === "...---...") {
-        // Redirect to another website
         window.location.href = "https://i.ibb.co/Sn6FSYC/Smiley.png"; 
       }
     }
